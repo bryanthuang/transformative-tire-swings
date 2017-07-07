@@ -6,13 +6,14 @@ import client_env from './client_env.js';
 import houndifyclient from './houndify-client.js';
 import frequencyBars from './frequency-bars.js';
 import ResponseCard from './components/ResponseCard.jsx';
+import IntroModal from './components/IntroModal.jsx';
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      response: {type: "text", api: "default", text: "If you can dream it, we can do it", data: Object},
+      response: {type: 'text', api: 'default', text: 'If you can dream it, we can do it', data: Object},
       location: {},
       micOn: false,
       textQuery: ''
@@ -22,20 +23,20 @@ class App extends React.Component {
 
     this.requestInfo = {
       ClientID: clientID,
-      UserID: "test_user"
+      UserID: 'test_user'
     };
   }
 
   componentDidMount() {
     Utils.location().
-    then((data) => {
-      this.setState({
-        location: {
-          lat: data.coords.latitude,
-          lon: data.coords.longitude
-        }
-      })
-    })
+      then((data) => {
+        this.setState({
+          location: {
+            lat: data.coords.latitude,
+            lon: data.coords.longitude
+          }
+        });
+      });
   }
 
   // trigger response state to change when getting back reply from Fred
@@ -46,8 +47,8 @@ class App extends React.Component {
       console.log('handleServerResponse: ', response);
       this.setState({
         response: response
-      })
-      console.log("after changing state: ", this.state.response);
+      });
+      console.log('after changing state: ', this.state.response);
       this.responseTextToSpeech(response.text);
     }
   }
@@ -70,7 +71,7 @@ class App extends React.Component {
 
   setLoadingState() {
     this.setState({
-      response: {type: "text", api: "loading", text: "Hang on a moment...", data: Object},
+      response: {type: 'text', api: 'loading', text: 'Hang on a moment...', data: Object},
     });
   }
 
@@ -94,7 +95,11 @@ class App extends React.Component {
       //display frequency bars
       ///audio frequency stop
       //starts streaming of voice search requests to Houndify backend
+<<<<<<< HEAD
       document.getElementById("voiceIcon").className = "ui text loader"; //"loading circle notched icon big";
+=======
+      document.getElementById('voiceIcon').className = 'loading circle notched icon big';
+>>>>>>> implement modal and removed hover effect on mic
       // document.getElementById("textSearchButton").disabled = true;
       // document.getElementById("query").readOnly = true;
     }
@@ -132,20 +137,26 @@ class App extends React.Component {
 
 
   render () {
+<<<<<<< HEAD
     const border = {
       border: 0, 
       outlineStyle: 'none'
       // color: '#fff'
+=======
+    const border = {border: 0,
+      outline: 'none',
+      color: '#fff'
+>>>>>>> implement modal and removed hover effect on mic
     };
     const textStyle = {
-      marginTop: '30px', 
-      fontSize: '20px', 
-      borderStyle: 'none', 
-      boxShadow: 'none', 
-      wordWrap: 'normal', 
-      wordBreak: 'normal', 
+      marginTop: '30px',
+      fontSize: '20px',
+      borderStyle: 'none',
+      boxShadow: 'none',
+      wordWrap: 'normal',
+      wordBreak: 'normal',
       whiteSpace: 'normal'
-      //dont add opacity 
+      //dont add opacity
     };
     const visualizerStyle = {
       width: '100%',
@@ -155,25 +166,46 @@ class App extends React.Component {
     };
 
     const bkg = {
+<<<<<<< HEAD
       backgroundImage: 'url(.././libs/mtns.jpg)', 
       height: '100%', 
       opacity: '0.90', 
+=======
+      backgroundImage: 'url(.././libs/mtns.jpg)',
+      // backgroundRepeat: 'no-repeat',
+      // backgroundPosition: 'center',
+      height: '100%',
+      // width: '100%',
+      // margin: '0px',
+      // position: 'relative',
+      opacity: '0.90',
+      // padding: '0px',
+>>>>>>> implement modal and removed hover effect on mic
       backgroundSize: 'cover',
       overflowY: 'hidden'
-    }; 
+    };
 
 
     return (
       <div className="container" style={bkg}>
+<<<<<<< HEAD
 
+=======
+        <IntroModal />
+>>>>>>> implement modal and removed hover effect on mic
         <ResponseCard response={this.state.response} />
 
         <div className="ui centered grid">
           <form id="form" className="ui form" action="javascript:void(0);">
+<<<<<<< HEAD
             <div className="ui big labeled input" style={{marginBottom: '30px'}}>
               <div className="ui icon basic label button" onClick= {this.startStopVoiceSearch.bind(this)} style={border}>
                 <i id="voiceIcon" className="inverted unmute huge icon"></i>
               </div>
+=======
+            <div className="ui action big labeled fluid input field" style={{marginBottom: '100px'}}>
+              <i id="voiceIcon" className="unmute huge icon" onClick= {this.startStopVoiceSearch.bind(this)}></i>
+>>>>>>> implement modal and removed hover effect on mic
             </div>
           </form>
         </div>
@@ -186,6 +218,10 @@ class App extends React.Component {
               <i className='circular search link icon' onClick={this.textQuery.bind(this)}></i>
             </div>
           </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> implement modal and removed hover effect on mic
         </div>
 
         <canvas className="visualizer" style={visualizerStyle}></canvas>
@@ -197,5 +233,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
-
